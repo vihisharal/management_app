@@ -1,46 +1,55 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
+import {Consumer} from '../Context';
 import './patient.css';
+
 
 class Patient extends Component {
   state={
     showPatientInfo:true
   };
-  onDeleteClick=()=>{
-    this.props.deleteClickHandler();
+  onDeleteClick=(id,dispatch)=>{
+    dispatch({type:'DELETE_PATIENT',payload:id});
+    /* this.props.deleteClickHandler(); */
   }
   render() {
-    const {name,serialNumber,mobileNumber}=this.props.patient;
+    const {name,serialNumber,mobileNumber,id}=this.props.patient;
     const {showPatientInfo} = this.state;
-    return (//name="Vishal Gavali" serialNumber="1212232" mobileNumber="232-232-3223"
-      <div className="card card-body mb-3">
-        <h4>{name}{' '} 
-          <i  
-            onClick={()=>this.setState({showPatientInfo:!this.state.showPatientInfo}) } 
-            className="fa fa-sort-down"
-            style={{cursor:'pointer'}}
-          />
-          <i
-            className="fa fa-times"
-            style={{cursor:'pointer',float:'right',color:'red'}}
-            onClick={this.onDeleteClick} 
-          />
-        </h4>
-        {showPatientInfo? 
-          (<ul className="list-group">
-            <li className="list-group-item">Serial : {serialNumber}</li>
-            <li className="list-group-item">Mobile : {mobileNumber}</li>
-          </ul>)
-          :null}
-      
-      </div>
+    return (
+      <Consumer>
+        {value=>{
+          const {dispatch} =value;
+          return(
+            <div className="card card-body mb-3">
+            <h4>{name}{' '} 
+              <i  
+                onClick={()=>this.setState({showPatientInfo:!this.state.showPatientInfo}) } 
+                className="fa fa-sort-down"
+                style={{cursor:'pointer'}}
+              />
+              <i
+                className="fa fa-times"
+                style={{cursor:'pointer',float:'right',color:'red'}}
+                onClick={this.onDeleteClick.bind(this,id,dispatch)} 
+              />
+            </h4>
+            {showPatientInfo? 
+              (<ul className="list-group">
+                <li className="list-group-item">Serial : {serialNumber}</li>
+                <li className="list-group-item">Mobile : {mobileNumber}</li>
+              </ul>)
+              :null}
+          </div>
+          )
+        }}
+      </Consumer>
     )
   }
 }
 
 Patient.propTypes={
-  patient: PropType.object.isRequired,
-  deleteClickHandler:PropType.func.isRequired
+  patient: PropType.object.isRequired
+  /* deleteClickHandler:PropType.func.isRequired */
 }
 
 
