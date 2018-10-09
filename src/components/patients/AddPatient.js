@@ -9,7 +9,9 @@ class AddPatient extends Component {
        /* id:uniqeID(), */
        name:"",
        serialNumber:"",
-       mobileNumber:""
+       mobileNumber:"",
+       errors:{}
+       
   }
 
   onChange = e => this.setState({[e.target.name]:e.target.value});
@@ -17,6 +19,24 @@ class AddPatient extends Component {
   onSubmit = (dispatch,e) => {
     e.preventDefault();
     const{name,serialNumber,mobileNumber}=this.state;
+
+     //error checking
+     if(name===''){
+      this.setState({
+        errors:{name:'Name is required.'}
+      }); return;
+     }
+     if(serialNumber===''){
+      this.setState({
+        errors:{serialNumber:'Serial number is required.'}
+      }); return;
+     }
+     if(!(/^[1-9]{1}[0-9]{9}$/.test(mobileNumber)) && mobileNumber.length!==10){
+      this.setState({
+        errors:{mobileNumber:'Mobile number is required.'}
+      }); return;
+     }           
+
     const newPatient={
       id:uniqeID(),
       name,
@@ -27,12 +47,13 @@ class AddPatient extends Component {
     this.setState({
       name:"",
       serialNumber:"",
-      mobileNumber:""
+      mobileNumber:"",
+      errors:{}
     });
   }
 
   render() {
-    const {name,serialNumber,mobileNumber} =this.state;
+    const {name,serialNumber,mobileNumber,errors} =this.state;
 
     return(
       <Consumer>
@@ -49,6 +70,8 @@ class AddPatient extends Component {
                   placeholder="Enter Name..."
                   value={name}
                   onChange={this.onChange} 
+                  error={errors.name}
+                  
                 /> 
                 
                 <TextInputGroup 
@@ -57,6 +80,7 @@ class AddPatient extends Component {
                   placeholder="Enter Serial Number..."
                   value={serialNumber}
                   onChange={this.onChange}
+                  error={errors.serialNumber}
                 /> 
                 <TextInputGroup 
                   label="Mobile Number"
@@ -64,6 +88,7 @@ class AddPatient extends Component {
                   placeholder="Enter Mobile Number..."
                   value={mobileNumber}
                   onChange={this.onChange}
+                  error={errors.mobileNumber}
                 />
                 <input type="submit" value="Add Patient" className="btn btn-light btn-block" />                       
               </form>
