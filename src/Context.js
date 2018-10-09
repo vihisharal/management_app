@@ -10,7 +10,12 @@ const reducer=(state,action)=>{
         ...state,
         patients:state.patients.filter(patient=> patient.id!==action.payload)
       };
-    default :
+      case 'ADD_PATIENT':
+      return{
+        ...state,
+        patients:[action.payload,...state.patients]
+      };
+      default :
       return state;
   }
 }

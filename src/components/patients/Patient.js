@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
-import {Consumer} from '../Context';
-import './patient.css';
+import {Consumer} from '../../Context';
 
 
 class Patient extends Component {
   state={
-    showPatientInfo:true
+    showPatientInfo:false
   };
   onDeleteClick=(id,dispatch)=>{
     dispatch({type:'DELETE_PATIENT',payload:id});
@@ -49,7 +48,6 @@ class Patient extends Component {
 
 Patient.propTypes={
   patient: PropType.object.isRequired
-  /* deleteClickHandler:PropType.func.isRequired */
 }
 
 
