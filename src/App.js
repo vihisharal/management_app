@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route ,Switch } from 'react-router-dom';
 import Patients from './components/patients/Patients';
 import AddPatient from './components/patients/AddPatient';
+import About from './components/pages/About';
 import Header from './components/layouts/Header';
 import { Provider } from './Context';
 
@@ -12,13 +14,20 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <div className="App">
-          <Header hospitalName="Jivan Seva" />
-          <div className="container">
-            <AddPatient />
-            <Patients />
+        <BrowserRouter>
+          <div className="App">
+            <Header hospitalName="Jivan Seva" />
+            <div className="container">
+              <Switch>
+                <Route exact path ="/" component={Patients} />
+                <Route exact path ="/patient/add" component={AddPatient} />
+                <Route exact path ="/about" component={About} />
+              </Switch>
+              {/* <AddPatient />
+              <Patients /> */}
+            </div>
           </div>
-        </div>
+        </BrowserRouter>
       </Provider>
     );
   }
