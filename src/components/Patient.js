@@ -7,7 +7,7 @@ class Patient extends Component {
     const {name,serialNumber,mobileNumber}=this.props.patient;
     return (//name="Vishal Gavali" serialNumber="1212232" mobileNumber="232-232-3223"
       <div className="card card-body mb-3">
-        <h4>{name}</h4>
+        <h4>{name} <i className="fa fa-plus"></i></h4>
         <ul className="list-group">
           <li className="list-group-item">Serial : {serialNumber}</li>
           <li className="list-group-item">Mobile : {mobileNumber}</li>

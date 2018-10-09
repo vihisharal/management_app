@@ -3,6 +3,7 @@ import Patients from './components/Patients';
 import Header from './components/Header';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 import './App.css';
 
 class App extends Component {
