@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Patient from './components/Patient';
+import Patients from './components/Patients';
 import Header from './components/Header';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,8 +11,7 @@ class App extends Component {
       <div className="App">
         <Header hospitalName="Jivan Seva" />
         <div className="container">
-          <Patient name="Mahesh Samant" serialNumber="1212232" mobileNumber="232-232-3223" />
-          <Patient name="Rajesh Gondhale" serialNumber="4352642" mobileNumber="333-444-5555" />
+          <Patients />
         </div>
       </div>
     );

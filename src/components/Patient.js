@@ -4,7 +4,7 @@ import './patient.css';
 
 class Patient extends Component {
   render() {
-    const {name,serialNumber,mobileNumber}=this.props;
+    const {name,serialNumber,mobileNumber}=this.props.patient;
     return (//name="Vishal Gavali" serialNumber="1212232" mobileNumber="232-232-3223"
       <div className="card card-body mb-3">
         <h4>{name}</h4>
@@ -18,9 +18,8 @@ class Patient extends Component {
 }
 
 Patient.propTypes={
-  name: PropType.string.isRequired,
-  serialNumber:PropType.string.isRequired,
-  mobileNumber:PropType.string.isRequired
+  patient: PropType.object.isRequired
 }
+
 
 export default Patient; 
