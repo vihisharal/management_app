@@ -24,14 +24,14 @@ class Patients extends Component {
   render() {
     const {patients} =this.state;
     return (
-      <div>
+      <React.Fragment>
         {patients.map(patient =>(
           <Patient 
             key={patient.id}
             patient={patient}  
           />
         ))}
-      </div>
+      </React.Fragment>
     )
   }
 }
