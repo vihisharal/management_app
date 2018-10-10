@@ -4,6 +4,7 @@ import Patients from './components/patients/Patients';
 import AddPatient from './components/patients/AddPatient';
 import About from './components/pages/About';
 import Header from './components/layouts/Header';
+import NotFound from './components/pages/NotFound'; 
 import { Provider } from './Context';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,6 +23,7 @@ class App extends Component {
                 <Route exact path ="/" component={Patients} />
                 <Route exact path ="/patient/add" component={AddPatient} />
                 <Route exact path ="/about" component={About} />
+                <Route  component={NotFound} />
               </Switch>
               {/* <AddPatient />
               <Patients /> */}

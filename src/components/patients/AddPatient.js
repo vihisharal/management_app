@@ -44,12 +44,14 @@ class AddPatient extends Component {
       mobileNumber
     };
     dispatch({ type:"ADD_PATIENT", payload:newPatient });
+    //clear state
     this.setState({
       name:"",
       serialNumber:"",
       mobileNumber:"",
       errors:{}
     });
+    this.props.history.push('/');
   }
 
   render() {
