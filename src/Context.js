@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import uniqeID  from 'uniqid';
+//import uniqeID  from 'uniqid';
+import axios from 'axios';
 
 const Context = React.createContext();
 
@@ -15,6 +16,11 @@ const reducer=(state,action)=>{
         ...state,
         patients:[action.payload,...state.patients]
       };
+      case 'UPDATE_PATIENT':
+      return{
+        ...state,
+        patients:state.patients.map(patient=> patient.id===action.payload.id ? (patient=action.payload):patient)
+      };
       default :
       return state;
   }
@@ -24,7 +30,7 @@ export class Provider extends Component{
 
   state={
     patients:[
-     {
+     /* {
        id:uniqeID(),
        name:"abc",
        serialNumber:"abs123",
@@ -41,12 +47,17 @@ export class Provider extends Component{
         name:"xyz",
         serialNumber:"xyz123",
         mobileNumber:"898-121-6463"
-       }       
+       } */       
     ],
     dispatch:action => this.setState(state => reducer(state,action))
     
   }
 
+  async componentDidMount(){
+    //const res= await axios.get('https://jsonplaceholder.typicode.com/users');
+    const res= await axios.get('http://localhost:3004/patients');
+    this.setState({patients:res.data});
+  }  
 
   render(){
       return(

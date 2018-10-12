@@ -4,7 +4,7 @@ import TextInputGroup from '../layouts/TextInputGroup'; //default case don't use
 import axios from 'axios';
 //import uniqeID  from 'uniqid';
 
-class AddPatient extends Component {
+class EditPatient extends Component {
   state={
        /* id:uniqeID(), */
        name:"",
@@ -12,6 +12,18 @@ class AddPatient extends Component {
        mobileNumber:"",
        errors:{}
        
+  }
+
+  async componentDidMount(){
+    const {id} = this.props.match.params;
+    //const res= await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+    const res= await axios.get(`http://localhost:3004/patients/${id}`);
+    const patient=res.data;
+    this.setState({
+      name:patient.name,
+      serialNumber:patient.serialNumber,
+      mobileNumber:patient.mobileNumber
+    })
   }
 
   onChange = e => this.setState({[e.target.name]:e.target.value});
@@ -37,16 +49,21 @@ class AddPatient extends Component {
       }); return;
      }           
 
-    const newPatient={
-      /* id:uniqeID(), */
+    const updatePatient={
       name,
       serialNumber,
       mobileNumber
-    };
+    } 
+    const {id} = this.props.match.params;
+    //const res  = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`,updatePatient);
+    const res  = await axios.put(`http://localhost:3004/patients/${id}`,updatePatient);
+    
+    dispatch({
+      type:'UPDATE_PATIENT',
+      payload:res.data
+    })
 
-    //const res=await axios.post('https://jsonplaceholder.typicode.com/users',newPatient);
-    const res=await axios.post('http://localhost:3004/patients',newPatient);
-    dispatch({ type:"ADD_PATIENT", payload:res.data });
+
     //clear state
     this.setState({
       name:"",
@@ -66,7 +83,7 @@ class AddPatient extends Component {
           const {dispatch}=value;
           return(
             <div className="card mb-3">
-            <div className="card-header">Add Patient</div>
+            <div className="card-header">Edit Patient</div>
             <div className="card-body">
               <form onSubmit={this.onSubmit.bind(this,dispatch)}>
                 <TextInputGroup 
@@ -95,7 +112,7 @@ class AddPatient extends Component {
                   onChange={this.onChange}
                   error={errors.mobileNumber}
                 />
-                <input type="submit" value="Add Patient" className="btn btn-light btn-block" />                       
+                <input type="submit" value="Update Patient" className="btn btn-light btn-block" />                       
               </form>
             </div>
           </div>
@@ -105,4 +122,4 @@ class AddPatient extends Component {
     )
   }
 }
-export default AddPatient;
+export default EditPatient;
