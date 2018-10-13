@@ -1,0 +1,16 @@
+{
+  "main.css": "/management_app/static/css/main.f5741332.chunk.css",
+  "main.js": "/management_app/static/js/main.25cfeb61.chunk.js",
+  "main.js.map": "/management_app/static/js/main.25cfeb61.chunk.js.map",
+  "static/css/1.3c90a55b.chunk.css": "/management_app/static/css/1.3c90a55b.chunk.css",
+  "static/js/1.4c5e8908.chunk.js": "/management_app/static/js/1.4c5e8908.chunk.js",
+  "static/js/1.4c5e8908.chunk.js.map": "/management_app/static/js/1.4c5e8908.chunk.js.map",
+  "runtime~main.js": "/management_app/static/js/runtime~main.c5b6d670.js",
+  "runtime~main.js.map": "/management_app/static/js/runtime~main.c5b6d670.js.map",
+  "static/media/font-awesome.min.css": "/management_app/static/media/fontawesome-webfont.fee66e71.woff",
+  "static/css/main.f5741332.chunk.css.map": "/management_app/static/css/main.f5741332.chunk.css.map",
+  "static/css/1.3c90a55b.chunk.css.map": "/management_app/static/css/1.3c90a55b.chunk.css.map",
+  "index.html": "/management_app/index.html",
+  "precache-manifest.86a634d33fff65f7ab356a01ac0231bb.js": "/management_app/precache-manifest.86a634d33fff65f7ab356a01ac0231bb.js",
+  "service-worker.js": "/management_app/service-worker.js"
+}
